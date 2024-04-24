@@ -1,0 +1,17 @@
+<%- include("./partials/head") %>
+<%- include("./partials/sidebar") %>
+  <h2><%= title %></h2>
+
+  <% if (products_list.length) { %>
+    <ul>
+      <% products_list.forEach(product => { %>
+        <li><a href="<%= product.url %>"><%= product.name %></a></li>
+      <% }) %>
+
+    </ul>
+  <% } else { %>
+    <p>There are no products.</p>
+  <% } %>
+
+  <%- include("./partials/foot") %>
+
