@@ -12,28 +12,22 @@
     <label for="amount">Amount in stock:
       <input id="amount" name="amount" type="number" required value="<%= product ? product.amount : null %>">
     </label>
-
-
-      <label for="category">Category:
-        <select id="category" name="category" type="select" required value="<%= product ? product.category : null %>">
-          <option value="">Please select a category</option>
-          <% categories_list.forEach(category => { %>
-            <% if (product) { %>
-              <% if (category._id.toString() === product.category._id.toString()) { %>
-                <option value="<%= category._id %>" selected><%= category.name %></option>
-              <% } else { %>
-                <option value="<%= category._id %>"><%= category.name %></option>
-              <% } %>
+    <label for="category">Category:
+      <select id="category" name="category" type="select" required value="<%= product ? product.category : null %>">
+        <option value="">Please select a category</option>
+        <% categories.forEach(category => { %>
+          <% if (product) { %>
+            <% if (category._id.toString() === product.category._id.toString()) { %>
+              <option value="<%= category._id %>" selected><%= category.name %></option>
             <% } else { %>
               <option value="<%= category._id %>"><%= category.name %></option>
             <% } %>
-          <% }) %>
-        </select>
-      </label>
-
-
-
-
+          <% } else { %>
+            <option value="<%= category._id %>"><%= category.name %></option>
+          <% } %>
+        <% }) %>
+      </select>
+    </label>
     <label for="description">Description:
       <textarea id="description" name="description" required><%= product ? product.description : null %></textarea>
     </label>
