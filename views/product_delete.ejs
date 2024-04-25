@@ -1,0 +1,20 @@
+<%- include("./partials/head") %>
+<%- include("./partials/sidebar") %>
+
+  <h2><%= product.name %></h2>
+
+  <p><%= product.description %></p>
+  <p>$<%= product.price %></p>
+  <p>In stock: <%= product.amount %></p>
+  <p>Category: <%= product.category.name %> </p>
+
+  <div>
+    <h3>Admin actions</h3>
+    <form method="POST">
+      <p>Are you sure you would like to delete this product? This action cannot be reversed.</p>
+      <input type="hidden" name="productid" value="<%= product._id %>">
+      <input type="submit" value="Delete">
+    </form>
+  </div>
+  <%- include("./partials/foot") %>
+

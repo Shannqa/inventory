@@ -177,6 +177,28 @@ exports.product_edit_post = [
 ];
 
 /* Delete a product - get */
-exports.product_delete_get = async (req, res, next) => {};
+exports.product_delete_get = asyncHandler(async (req, res, next) => {
+  const product = await Product.findById(req.params.id)
+    .populate("category")
+    .exec();
+
+  if (product === null) {
+    res.redirect("/products");
+  }
+
+  res.render("product_delete", {
+    title: "Delete produxt",
+    product: product,
+  });
+});
+
 /* Delete a product - post */
-exports.product_delete_post = async (req, res, next) => {};
+exports.product_delete_post = asyncHandler(async (req, res, next) => {
+  const product = await Product.findById(req.params.id)
+    .populate("category")
+    .exec();
+
+  await Product.findByIdAndDelete(req.body.productid);
+
+  res.redirect("/products");
+});
