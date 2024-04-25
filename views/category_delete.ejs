@@ -1,0 +1,33 @@
+<%- include("./partials/head") %>
+<%- include("./partials/sidebar") %>
+
+  <h2>Delete category: <%= category.name %></h2>
+  <% if (products.length > 0) { %>
+    <% products.forEach(product => { %>
+      <div>
+        <h3><%= product.name %></h3>
+        <p>$<%= product.price %></p>
+        <p><%= product.description %></p>
+      </div>      
+    <% }) %>
+  <% } else { %>
+    <p>There are no products in this category.</p>
+  <% } %>
+  <div>
+
+    <div>
+      <h3>Admin actions</h3>
+      <% if (products.length > 0) { %>
+        <p>Before attempting to remove this category please delete products that belong to this category or change their category to a different one.</p>
+
+      <% } else { %>
+        <form method="POST">
+          <p>Are you sure you would like to delete this category? This action cannot be reversed.</p>
+          <input type="hidden" name="categoryid" value="<%= category._id %>">
+          <input type="submit" value="Delete">
+        </form>
+      <% } %>
+      <a href="<%= category.url %>/edit">Edit category</a>
+      <a href="<%= category.url %>/delete">Delete category</a>
+    </div>
+    <%- include("./partials/foot") %>

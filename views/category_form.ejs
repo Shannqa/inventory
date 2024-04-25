@@ -1,0 +1,17 @@
+<%- include("./partials/head") %>
+<%- include("./partials/sidebar") %>
+
+  <h2><%= title %></h2>
+  <form method="POST">
+    <label for="name">Category:</label>
+    <input name="name" type="text" required value="<%= category ? category.name : null %>">
+    <input type="submit" value="Submit">
+  </form>
+  <% if (errors) { %>
+    <ul>
+      <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+  <%- include("./partials/foot") %>

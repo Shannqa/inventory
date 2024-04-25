@@ -1,0 +1,21 @@
+<%- include("./partials/head") %>
+<%- include("./partials/sidebar") %>
+
+  <h2><%= category.name %></h2>
+  <% if (products.length > 0) { %>
+    <% products.forEach(product => { %>
+      <div>
+        <h3><%= product.name %></h3>
+        <p>$<%= product.price %></p>
+        <p><%= product.description %></p>
+      </div>      
+    <% }) %>
+  <% } else { %>
+    <p>There are no products in this category.</p>
+  <% } %>
+  <div>
+    <h3>Admin actions</h3>
+    <a href="<%= category.url %>/edit">Edit category</a>
+    <a href="<%= category.url %>/delete">Delete category</a>
+  </div>
+  <%- include("./partials/foot") %>

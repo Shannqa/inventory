@@ -1,0 +1,16 @@
+<%- include("./partials/head") %>
+<%- include("./partials/sidebar") %>
+  <h2><%= title %></h2>
+
+  <% if (categories_list.length) { %>
+    <ul>
+      <% categories_list.forEach(category => { %>
+        <li><a href="<%= category.url %>"><%= category.name %></a></li>
+      <% }) %>
+
+    </ul>
+  <% } else { %>
+    <p>There are no categories.</p>
+  <% } %>
+
+  <%- include("./partials/foot") %>
