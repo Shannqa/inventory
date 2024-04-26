@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -10,4 +16,21 @@ a {
 
 .product-form {
   display: flex;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 200px;
+}
+
+.hero {
+  
+}
+
+.hero-img {
+  width: 200px;
+  height: 200px;
+  background-color: purple;
 }
