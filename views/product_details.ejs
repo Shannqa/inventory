@@ -1,6 +1,6 @@
 <%- include("./partials/head") %>
-<%- include("./partials/sidebar") %>
-
+<%- include("./partials/header") %>
+<div class="main">
   <h2><%= product.name %></h2>
 
   <p><%= product.description %></p>
@@ -13,5 +13,6 @@
     <a href="<%= product.url %>/edit">Edit product</a>
     <a href="<%= product.url %>/delete">Delete product</a>
   </div>
-  <%- include("./partials/foot") %>
+</div>
+<%- include("./partials/foot") %>
 

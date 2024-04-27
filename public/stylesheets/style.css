@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Yatra+One&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -5,13 +7,7 @@
 }
 
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  
-}
-
-a {
-  color: #00B7FF;
+  font-family: "Lato", Helvetica, Arial, sans-serif;
 }
 
 .product-form {
@@ -22,15 +18,47 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 200px;
+  height: 80px;
+  background-color: #d8ebeb;
+  padding: 10px 50px;
+  font-size: 1.2rem;
+}
+
+.header a {
+  margin: 10px;
 }
 
 .hero {
-  
+  background-color: #d8ebeb;
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  line-height: 2;
 }
 
 .hero-img {
-  width: 200px;
+  width: 300px;
   height: 200px;
   background-color: purple;
+  margin-right: 100px;
+}
+
+.main {
+  width: 80%;
+  max-width: 1000px;
+  padding: 50px;
+}
+
+a, a:active {
+  color: black;
+}
+
+a:hover {
+  color: purple;
+}
+
+a:active {
+  color: orange;
 }

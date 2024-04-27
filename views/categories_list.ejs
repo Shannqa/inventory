@@ -1,5 +1,6 @@
 <%- include("./partials/head") %>
-<%- include("./partials/sidebar") %>
+<%- include("./partials/header") %>
+<div class="main">
   <h2><%= title %></h2>
 
   <% if (categories_list.length) { %>
@@ -12,5 +13,5 @@
   <% } else { %>
     <p>There are no categories.</p>
   <% } %>
-
-  <%- include("./partials/foot") %>
+</div>
+ <%- include("./partials/foot") %>

@@ -1,6 +1,6 @@
 <%- include("./partials/head") %>
-<%- include("./partials/sidebar") %>
-
+<%- include("./partials/header") %>
+<div class="main">
   <h2><%= title %></h2>
   <form method="POST">
     <label for="name">Category:</label>
@@ -14,4 +14,5 @@
       <% }) %>
     </ul>
   <% } %>
-  <%- include("./partials/foot") %>
+</div>
+<%- include("./partials/foot") %>

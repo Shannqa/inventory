@@ -13,7 +13,7 @@ var app = express();
 // mongoose setup
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
-const mongoDB = `mongodb+srv://shannqa:${PASS}@cluster0.wg6xdnw.mongodb.net/local_library?retryWrites=true&w=majority&appName=Cluster0`;
+const mongoDB = `mongodb+srv://shannqa:${PASS}@cluster0.wg6xdnw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 main().catch((err) => console.log(err));
 
