@@ -6,10 +6,10 @@ const logger = require("morgan");
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-// const indexRouter = require("./routes");
+const indexRouter = require("./routes/index");
 const productsRouter = require("./routes/products");
 const categoriesRouter = require("./routes/categories");
-// const userRouter = require("./routes/user");
+const userRouter = require("./routes/user");
 const PASS = require("./secret");
 const app = express();
 const User = require("./models/userSchema");
@@ -29,11 +29,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-
-// app.use("/", indexRouter);
-app.use("/products", productsRouter);
-app.use("/categories", categoriesRouter);
-// app.use("/user", userRouter);
 
 //passport
 app.use(
@@ -80,54 +75,11 @@ passport.deserializeUser(async (id, done) => {
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-/* Index - get */
-// app.get("/signup") = asyncHandler(async (req, res, next) => {
-//   redirect("/");
-// });
-
-app.get("/", function (req, res, next) {
-  res.render("index", { title: "Home", user: req.user || null });
-});
-
-/* Sign up form - get */
-app.get("/signup", (req, res, next) => {
-  res.render("signup_form", {
-    title: "Sign Up",
-    user: null,
-  });
-});
-
-/* Sign up form - post */
-app.post("/signup", async (req, res, next) => {
-  try {
-    const user = new User({
-      username: req.body.username,
-      password: req.body.password,
-    });
-    const result = await user.save();
-    res.redirect("/");
-  } catch (err) {
-    return next(err);
-  }
-});
-
-/* Login form - get */
-app.get("/login", async (req, res, next) => {
-  console.log(req.user);
-  res.render("login_form", {
-    title: "Log In",
-    user: null,
-  });
-});
-
-/* Login form - post */
-app.post(
-  "/login",
-  passport.authenticate("local", {
-    successRedirect: "/",
-    failiureRedirect: "/login",
-  })
-);
+// set routes
+app.use("/products", productsRouter);
+app.use("/categories", categoriesRouter);
+app.use("/", indexRouter);
+app.use("/user", userRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
