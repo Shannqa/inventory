@@ -9,8 +9,10 @@ router.get("/", user_controller.index);
 router.get("/signup", user_controller.signup_get);
 router.post("/signup", user_controller.signup_post);
 
-/* Login form */
+/* Log in form */
 router.get("/login", user_controller.login_get);
 router.post("/login", user_controller.login_post);
 
+/* Log out */
+router.get("/logout", user_controller.logout_get);
 module.exports = router;

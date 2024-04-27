@@ -1,3 +1,4 @@
+const bcrypt = require("bcryptjs");
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
@@ -48,7 +49,8 @@ passport.use(
       if (!user) {
         return done(null, false, { message: "Incorect username" });
       }
-      if (user.password !== password) {
+      const match = await bcrypt.compare(password, user.password);
+      if (!match) {
         return done(null, false, { message: "Incorect password" });
       }
       return done(null, user);
