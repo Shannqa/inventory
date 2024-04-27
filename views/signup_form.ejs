@@ -1,0 +1,17 @@
+<%- include("./partials/head") %>
+<%- include("./partials/header") %>
+<div class="main">
+  <h2><%= title %></h2>
+
+  <form method="POST" action="" class="signup-form">
+    <label for="username">Username:
+      <input id="username" name="username" type="text" required value="<%= user ? user.username : null %>">
+    </label>
+    <label for="password">Password:
+      <input id="password" name="password" type="password" required>
+    </label>
+
+    <button type="submit">Sign Up</button>
+  </form>
+</div>
+<%- include("./partials/foot") %>

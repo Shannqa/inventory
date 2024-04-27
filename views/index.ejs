@@ -2,7 +2,12 @@
 <%- include("./partials/header") %>
 <%- include("./partials/hero") %>
 <div class="main">
-  <h1><%= title %></h1>
-  <p>Welcome to <%= title %></p>
+  <h1><%= user %></h1>
+  <% if (user) { %>
+    <h2>Hello <%= user.username %></h2>
+    <a href="/logout">Log Out</a>
+  <% } %>
+
+  <p>Welcome to </p>
 </div>
 <%- include("./partials/foot") %>
