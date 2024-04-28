@@ -1,4 +1,5 @@
 const bcrypt = require("bcryptjs");
+const dotenv = require("dotenv").config();
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
@@ -11,13 +12,13 @@ const indexRouter = require("./routes/index");
 const productsRouter = require("./routes/products");
 const categoriesRouter = require("./routes/categories");
 const userRouter = require("./routes/user");
-const PASS = require("./secret");
 const app = express();
 const User = require("./models/userSchema");
 // mongoose setup
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
-const mongoDB = `mongodb+srv://shannqa:${PASS}@cluster0.wg6xdnw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+const mongoDB = process.env.DB_STRING;
+const MongoStore = require("connect-mongo");
 
 main().catch((err) => console.log(err));
 
@@ -34,9 +35,10 @@ app.use(express.static(path.join(__dirname, "public")));
 //passport
 app.use(
   session({
-    secret: "kitty",
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
+    store: MongoStore.create({ mongoUrl: process.env.DB_STRING }),
   })
 );
 app.use(passport.initialize());

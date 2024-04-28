@@ -16,7 +16,7 @@
     <label for="category">Category:
       <select id="category" name="category" type="select" required value="<%= product ? product.category : null %>">
         <option value="">Please select a category</option>
-        <% categories.forEach(category => { %>
+        <% categories_list.forEach(category => { %>
           <% if (product) { %>
             <% if (category._id.toString() === product.category._id.toString()) { %>
               <option value="<%= category._id %>" selected><%= category.name %></option>

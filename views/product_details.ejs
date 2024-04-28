@@ -1,12 +1,23 @@
 <%- include("./partials/head") %>
 <%- include("./partials/header") %>
-<div class="main">
+<div class="main product">
   <h2><%= product.name %></h2>
+  <div class="left">
+    <div class="product-img"></div>
+    <p>$<%= product.price %></p>
+  
+    <p>In stock: <%= product.amount %></p>
+    <p>Quantity</p>
+  </div>
 
-  <p><%= product.description %></p>
-  <p>$<%= product.price %></p>
-  <p>In stock: <%= product.amount %></p>
-  <p>Category: <%= product.category.name %> </p>
+
+  <div class="right">
+    <p><%= product.description %></p>
+    <p>Category: <%= product.category.name %> </p>
+  </div>
+
+ 
+
 
   <div>
     <h3>Admin actions</h3>

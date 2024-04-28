@@ -6,6 +6,9 @@
   <% if (user) { %>
     <h2>Hello <%= user.username %></h2>
     <a href="/user/logout">Log Out</a>
+    <% if (user.role === "admin") { %>
+      <p>You are an admin!</p>
+    <% } %>
   <% } %>
 
   <p>Welcome to </p>

@@ -27,6 +27,7 @@ exports.signup_post = asyncHandler(async (req, res, next) => {
         const user = new User({
           username: req.body.username,
           password: hash,
+          role: "user",
         });
         const result = await user.save();
         res.redirect("/");
@@ -46,9 +47,16 @@ exports.login_get = asyncHandler(async (req, res, next) => {
 });
 
 /* Log in form - post */
-exports.login_post = passport.authenticate("local", {
+exports.login_auth = passport.authenticate("local", {
   successRedirect: "/",
-  failiureRedirect: "/user/login",
+  failiureRedirect: "/",
+});
+
+exports.login_post = asyncHandler(async (req, res, next) => {
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login-failure",
+  })(req, res, next);
 });
 
 /* Log out */

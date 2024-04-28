@@ -3,12 +3,16 @@
 <div class="main">
   <h2><%= category.name %></h2>
   <% if (products.length > 0) { %>
-    <% products.forEach(product => { %>
-      <div>
-        <h3><%= product.name %></h3>
-        <p>$<%= product.price %></p>
-        <p><%= product.description %></p>
-      </div>      
+    <div class="products-list">
+      <% products.forEach(product => { %>
+        <div class="product">
+          <a href="<%= product.url %>">
+            <div class="product-img"></div>
+            <p><%= product.name %></p>
+          </a>
+          <p class="price">$<%= product.price %></a></p>
+          <div class="add-button">Add to cart</div>
+        </div>
     <% }) %>
   <% } else { %>
     <p>There are no products in this category.</p>

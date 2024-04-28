@@ -4,12 +4,19 @@
   <h2><%= title %></h2>
 
   <% if (products_list.length) { %>
-    <ul>
+    <div class="products-list">
       <% products_list.forEach(product => { %>
-        <li><a href="<%= product.url %>"><%= product.name %></a></li>
+        <div class="product">
+          <a href="<%= product.url %>">
+            <div class="product-img"></div>
+            <p><%= product.name %></p>
+          </a>
+          <p class="price">$<%= product.price %></a></p>
+          <div class="add-button">Add to cart</div>
+        </div>
       <% }) %>
 
-    </ul>
+      </div>
   <% } else { %>
     <p>There are no products.</p>
   <% } %>

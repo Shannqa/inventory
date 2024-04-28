@@ -62,3 +62,54 @@ a:hover {
 a:active {
   color: orange;
 }
+
+
+.products-list {
+  display: flex;
+}
+
+.products-list .product-img {
+  width: 100px;
+  height: 100px;
+  background-color: rgb(145, 145, 186);
+}
+
+.products-list .product {
+  margin: 10px;
+}
+
+.add-button {
+  margin: 4px 0;
+  cursor: pointer;
+  padding: 8px;
+  background-color: rgb(74, 74, 167);
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  border: none;
+}
+
+.add-button:hover {
+  background-color: rgb(55, 124, 91);
+}
+
+.add-button:active {
+  background-color: rgb(124, 55, 93);
+}
+
+.product {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-areas: "name name"
+                       "left right";
+}
+
+.product .product-img {
+  width: 100px;
+  height: 200px;
+  background-color: rgb(145, 145, 186);
+}
+
+.product h2 {
+  grid-area: name;
+}
