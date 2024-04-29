@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const user_controller = require("../controllers/userController");
+const { isAuth, isAdmin } = require("../middleware/authorization");
 
 /* Index */
 router.get("/", user_controller.index);
@@ -17,14 +18,12 @@ router.post("/login", user_controller.login_post);
 router.get("/logout", user_controller.logout_get);
 
 /* User account */
-router.get("/account", user_controller.account_get);
+router.get("/account", isAuth, user_controller.account_get);
 
 /* Admin panel */
-router.get("/admin", user_controller.admin_get);
+router.get("/admin", isAdmin, user_controller.admin_get);
 
 /* Unauthorized */
 router.get("/unauthorized", user_controller.unauthorized_get);
 
-
- 
 module.exports = router;

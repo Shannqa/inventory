@@ -10,6 +10,7 @@ exports.index = asyncHandler(async (req, res, next) => {
   res.render("products_list", {
     title: "All products",
     products_list: allProducts,
+    user: req.user || null,
   });
 });
 
@@ -29,6 +30,7 @@ exports.product_details = asyncHandler(async (req, res, next) => {
   res.render("product_details", {
     title: "Product details",
     product: product,
+    user: req.user || null,
   });
 });
 
@@ -40,6 +42,7 @@ exports.product_add_get = asyncHandler(async (req, res, next) => {
     title: "Add a product",
     product: null,
     categories_list: allCategories,
+    user: req.user || null,
   });
 });
 
@@ -87,6 +90,7 @@ exports.product_add_post = [
         product: product,
         categories_list: allCategories,
         errors: errors.array(),
+        user: req.user || null,
       });
     } else {
       // Data from form is valid. Save book.
@@ -115,6 +119,7 @@ exports.product_edit_get = asyncHandler(async (req, res, next) => {
     categories: allCategories,
     product: product,
     errors: null,
+    user: req.user || null,
   });
 });
 
@@ -161,6 +166,7 @@ exports.product_edit_post = [
         categories: allCategories,
         product: product,
         errors: errors.array(),
+        user: req.user || null,
       });
 
       return;
@@ -189,6 +195,7 @@ exports.product_delete_get = asyncHandler(async (req, res, next) => {
   res.render("product_delete", {
     title: "Delete produxt",
     product: product,
+    user: req.user || null,
   });
 });
 
@@ -202,3 +209,9 @@ exports.product_delete_post = asyncHandler(async (req, res, next) => {
 
   res.redirect("/products");
 });
+
+exports.products_edit_get = function () {};
+exports.products_edit_post = function () {};
+
+exports.products_delete_get = function () {};
+exports.products_delete_post = function () {};

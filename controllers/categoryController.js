@@ -10,6 +10,7 @@ exports.index = asyncHandler(async (req, res, next) => {
   res.render("categories_list", {
     title: "All categories",
     categories_list: allCategories,
+    user: req.user || null,
   });
 });
 
@@ -31,6 +32,7 @@ exports.category_details = asyncHandler(async (req, res, next) => {
     title: "Category details",
     category: category,
     products: products,
+    user: req.user || null,
   });
 });
 
@@ -40,6 +42,7 @@ exports.category_add_get = asyncHandler(async (req, res, next) => {
     title: "Add a category",
     category: null,
     errors: null,
+    user: req.user || null,
   });
 });
 
@@ -63,6 +66,7 @@ exports.category_add_post = [
       res.render("category_form", {
         title: "Add a category",
         errors: errors.array(),
+        user: req.user || null,
       });
     } else {
       // Data from is valid. Save category.
@@ -89,6 +93,7 @@ exports.category_edit_get = asyncHandler(async (req, res, next) => {
     category: category,
     products: products,
     errors: null,
+    user: req.user || null,
   });
 });
 
@@ -121,6 +126,7 @@ exports.category_edit_post = [
         category: category,
         products: products,
         errors: errors.array(),
+        user: req.user || null,
       });
 
       return;
@@ -153,6 +159,7 @@ exports.category_delete_get = asyncHandler(async (req, res, next) => {
     category: category,
     products: products,
     errors: null,
+    user: req.user || null,
   });
 });
 
@@ -169,6 +176,7 @@ exports.category_delete_post = asyncHandler(async (req, res, next) => {
       category: category,
       products: products,
       errors: null,
+      user: req.user || null,
     });
     return;
   } else {
@@ -176,3 +184,9 @@ exports.category_delete_post = asyncHandler(async (req, res, next) => {
     res.redirect("/categories");
   }
 });
+
+exports.categories_edit_get = function () {};
+exports.categories_edit_post = function () {};
+
+exports.categories_delete_get = function () {};
+exports.categories_delete_post = function () {};

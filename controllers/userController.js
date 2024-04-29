@@ -13,7 +13,7 @@ exports.index = asyncHandler(async (req, res, next) => {
 exports.signup_get = asyncHandler(async (req, res, next) => {
   res.render("signup_form", {
     title: "Sign Up",
-    user: null,
+    user: req.user || null,
   });
 });
 
@@ -23,11 +23,11 @@ exports.signup_post = [
     .trim()
     .isLength({ min: 3 })
     .escape(),
-    body("password", "Password must be at least 3 characters long.")
-      .trim()
-      .isLength({ min: 3 })
-      .escape(),
-      
+  body("password", "Password must be at least 3 characters long.")
+    .trim()
+    .isLength({ min: 3 })
+    .escape(),
+
   asyncHandler(async (req, res, next) => {
     // Extract the validation errors from a request.
     const errors = validationResult(req);
@@ -37,37 +37,37 @@ exports.signup_post = [
         title: "Sign Up",
         username: username,
         password: null,
-        errors: errors.array()
+        errors: errors.array(),
+        user: req.user || null,
       });
       return;
     } else {
       bcrypt.hash(req.body.password, 10, async (err, hash) => {
-    if (err) {
-      next(err);
-    } else {
-      try {
-        const user = new User({
-          username: req.body.username,
-          password: hash,
-          role: "user",
-        });
-        const result = await user.save();
-        res.redirect("/");
-      } catch (err) {
-        return next(err);
-      }
+        if (err) {
+          next(err);
+        } else {
+          try {
+            const user = new User({
+              username: req.body.username,
+              password: hash,
+              role: "user",
+            });
+            const result = await user.save();
+            res.redirect("/");
+          } catch (err) {
+            return next(err);
+          }
+        }
+      });
     }
-  });
-  }
-  })
+  }),
 ];
-
 
 /* Log in form - get */
 exports.login_get = asyncHandler(async (req, res, next) => {
   res.render("login_form", {
     title: "Log In",
-    user: null,
+    user: req.user || null,
   });
 });
 
@@ -98,18 +98,16 @@ exports.logout_get = (req, res, next) => {
 exports.account_get = asyncHandler(async (req, res, next) => {
   res.render("account", {
     title: "Your account",
-    user: req.body.user,
+    user: req.user || null,
   });
 });
 
-
 /* Admin panel */
 exports.admin_get = asyncHandler(async (req, res, next) => {
-  
   if (req.user.role === "admin") {
     res.render("admin", {
       title: "Admin panel",
-      user: req.body.user,
+      user: req.user || null,
     });
   } else {
     res.redirect("/unauthorized");
@@ -119,7 +117,7 @@ exports.admin_get = asyncHandler(async (req, res, next) => {
 /* Unauthorized page */
 exports.unauthorized_get = asyncHandler(async (req, res, next) => {
   res.render("unauthorized", {
-    title: "Access denied"
+    title: "Access denied",
+    user: req.user || null,
   });
 });
-
