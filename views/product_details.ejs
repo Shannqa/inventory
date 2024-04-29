@@ -1,29 +1,27 @@
 <%- include("./partials/head") %>
 <%- include("./partials/header") %>
-<div class="main product">
-  <h2><%= product.name %></h2>
-  <div class="left">
-    <div class="product-img"></div>
-    <p>$<%= product.price %></p>
-  
-    <p>In stock: <%= product.amount %></p>
-    <p>Quantity</p>
+<div class="main">
+  <div class="product">
+    <h2><%= product.name %></h2>
+    <div class="left">
+      <div class="product-img"></div>
+      <p class="price">$<%= product.price %></p>
+      <p>In stock: <%= product.amount %></p>
+    </div>
+    <div class="right">
+      <p><%= product.description %></p>
+      <p>Category: <a href="<%= product.category.url %>"><%= product.category.name %></a></p>
+    </div>
   </div>
 
-
-  <div class="right">
-    <p><%= product.description %></p>
-    <p>Category: <%= product.category.name %> </p>
-  </div>
-
- 
-
-
-  <div>
+<% if (user && user.role === "admin") {%>
+  <div class="admin-actions">
     <h3>Admin actions</h3>
-    <a href="<%= product.url %>/edit">Edit product</a>
-    <a href="<%= product.url %>/delete">Delete product</a>
+    <div class="add-button"><a href="<%= product.url %>/edit">Edit product</a></div>
+    <div class="add-button"><a href="<%= product.url %>/delete">Delete product</a></div>
   </div>
+  <% } %>
+  
 </div>
 <%- include("./partials/foot") %>
 

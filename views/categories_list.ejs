@@ -4,12 +4,17 @@
   <h2><%= title %></h2>
 
   <% if (categories_list.length) { %>
-    <ul>
+    <div class="categories-list">
       <% categories_list.forEach(category => { %>
-        <li><a href="<%= category.url %>"><%= category.name %></a></li>
+        <div class="category">
+          <a href="<%= category.url %>">
+            <div class="category-img"></div>
+            <p><%= category.name %></p>
+          </a>
+        </div>
       <% }) %>
 
-    </ul>
+      </div>
   <% } else { %>
     <p>There are no categories.</p>
   <% } %>

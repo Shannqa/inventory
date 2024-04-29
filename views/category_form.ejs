@@ -2,10 +2,10 @@
 <%- include("./partials/header") %>
 <div class="main">
   <h2><%= title %></h2>
-  <form method="POST">
+  <form method="POST" class="category-form">
     <label for="name">Category:</label>
     <input name="name" type="text" required value="<%= category ? category.name : null %>">
-    <input type="submit" value="Submit">
+    <button type="submit" class="add-button">Add category</button>
   </form>
   <% if (errors) { %>
     <ul>

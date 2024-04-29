@@ -5,10 +5,10 @@
   <% if (products.length > 0) { %>
     <div class="products-list">
       <% products.forEach(product => { %>
-        <div class="product">
+        <div class="list-product">
           <a href="<%= product.url %>">
-            <div class="product-img"></div>
-            <p><%= product.name %></p>
+            <div class="list-product-img"></div>
+            <p class="name"><%= product.name %></p>
           </a>
           <p class="price">$<%= product.price %></a></p>
           <div class="add-button">Add to cart</div>
@@ -17,10 +17,13 @@
   <% } else { %>
     <p>There are no products in this category.</p>
   <% } %>
-  <div>
-    <h3>Admin actions</h3>
-    <a href="<%= category.url %>/edit">Edit category</a>
-    <a href="<%= category.url %>/delete">Delete category</a>
-  </div>
 </div>
+
+<% if (user && user.role === "admin") {%>
+<div class="admin-actions">
+  <h3>Admin actions</h3>
+  <div class="add-button"><a href="<%= category.url %>/edit">Edit category</a></div>
+  <div class="add-button"><a href="<%= category.url %>/delete">Delete category</a></div>
+</div>
+<% } %>
 <%- include("./partials/foot") %>

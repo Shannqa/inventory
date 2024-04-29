@@ -6,10 +6,10 @@
   <% if (products_list.length) { %>
     <div class="products-list">
       <% products_list.forEach(product => { %>
-        <div class="product">
+        <div class="list-product">
           <a href="<%= product.url %>">
-            <div class="product-img"></div>
-            <p><%= product.name %></p>
+            <div class="list-product-img"></div>
+            <p class="name"><%= product.name %></p>
           </a>
           <p class="price">$<%= product.price %></a></p>
           <div class="add-button">Add to cart</div>
