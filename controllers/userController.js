@@ -18,8 +18,30 @@ exports.signup_get = asyncHandler(async (req, res, next) => {
 });
 
 /* Sign up form - post */
-exports.signup_post = asyncHandler(async (req, res, next) => {
-  bcrypt.hash(req.body.password, 10, async (err, hash) => {
+exports.signup_post = [
+  body("username", "Username must be at least 3 characters long.")
+    .trim()
+    .isLength({ min: 3 })
+    .escape(),
+    body("password", "Password must be at least 3 characters long.")
+      .trim()
+      .isLength({ min: 3 })
+      .escape(),
+      
+  asyncHandler(async (req, res, next) => {
+    // Extract the validation errors from a request.
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      // there are errors
+      res.render("signup_form", {
+        title: "Sign Up",
+        username: username,
+        password: null,
+        errors: errors.array()
+      });
+      return;
+    } else {
+      bcrypt.hash(req.body.password, 10, async (err, hash) => {
     if (err) {
       next(err);
     } else {
@@ -36,7 +58,10 @@ exports.signup_post = asyncHandler(async (req, res, next) => {
       }
     }
   });
-});
+  }
+  })
+];
+
 
 /* Log in form - get */
 exports.login_get = asyncHandler(async (req, res, next) => {
@@ -68,3 +93,33 @@ exports.logout_get = (req, res, next) => {
     res.redirect("/");
   });
 };
+
+/* User account */
+exports.account_get = asyncHandler(async (req, res, next) => {
+  res.render("account", {
+    title: "Your account",
+    user: req.body.user,
+  });
+});
+
+
+/* Admin panel */
+exports.admin_get = asyncHandler(async (req, res, next) => {
+  
+  if (req.user.role === "admin") {
+    res.render("admin", {
+      title: "Admin panel",
+      user: req.body.user,
+    });
+  } else {
+    res.redirect("/unauthorized");
+  }
+});
+
+/* Unauthorized page */
+exports.unauthorized_get = asyncHandler(async (req, res, next) => {
+  res.render("unauthorized", {
+    title: "Access denied"
+  });
+});
+

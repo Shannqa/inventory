@@ -7,7 +7,16 @@
     <a href="/products/add">Add product</a>
     <a href="/categories">Categories</a>
     <a href="/products">Products</a>
-    <a href="/user/signup">Sign Up</a>
-    <a href="/user/login">Log In</a>
+    
+    <% if (user) { %>
+      <a href="/user/account">Your account</a>
+      <% if (user.role === "admin") { %>
+        <a href="/user/admin">Admin Panel</a>
+      <% } %>
+      <a href="/user/logout">Log out</a>
+    <% } else { %>
+      <a href="/user/signup">Sign Up</a>
+      <a href="/user/login">Log In</a>
+    <% } %> 
   </div>
 </div>

@@ -7,6 +7,12 @@ router.get("/", product_controller.index);
 router.get("/add", product_controller.product_add_get);
 router.post("/add", product_controller.product_add_post);
 
+router.get("/edit", product_controller.products_edit_get);
+router.post("/edit", product_controller.products_edit_post);
+
+router.get("/delete", product_controller.products_delete_get);
+router.post("/delete", products_controller.product_delete_post);
+
 router.get("/:id", product_controller.product_details);
 
 router.get("/:id/edit", product_controller.product_edit_get);

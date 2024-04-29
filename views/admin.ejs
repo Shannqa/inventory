@@ -1,0 +1,22 @@
+<%- include("./partials/head") %>
+<%- include("./partials/header") %>
+<div class="main">
+  <h2><%= title %></h2>
+  <p>Hi, <%= user.username %></p>
+
+  <h3>Admin actions</h3>
+  <h4>Products</h4>
+  <ul>
+    <li><a href="/products/add">Add product</a></li>
+    <li><a href="/products/edit">Edit product</a></li>
+    <li><a href="/products/delete">Delete product</a></li>
+  </ul>
+  <h4>Categories</h4>
+  <ul>
+    <li><a href="/categories/add">Add category</a></li>
+    <li><a href="/categories/edit">Edit category</a></li>
+    <li><a href="/categories/delete">Delete category</a></li>
+  </ul>
+
+</div>
+<%- include("./partials/foot") %>
